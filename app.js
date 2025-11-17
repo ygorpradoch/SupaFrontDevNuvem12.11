@@ -7,7 +7,7 @@ const updateProductPrice = document.querySelector('#update-price');
 
 // Function to fetch all products from the server
 async function fetchProducts() {
-  const response = await fetch('http://13.58.80.140/products');
+  const response = await fetch('http://13.58.80.140:3000/products');
   const products = await response.json();
 
   // Clear product list
@@ -54,7 +54,7 @@ addProductForm.addEventListener('submit', async event => {
 
 // Function to add a new product
 async function addProduct(name, price) {
-  const response = await fetch('http://13.58.80.140/products', {
+  const response = await fetch('http://13.58.80.140:3000/products', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -78,5 +78,6 @@ async function deleteProduct(id) {
 
 // Fetch all products on page load
 fetchProducts();
+
 
 
