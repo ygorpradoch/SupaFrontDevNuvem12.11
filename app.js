@@ -1,5 +1,5 @@
 // ATENÇÃO: SUBSTITUA <IP_DO_SEU_BACKEND_AQUI> pelo IP Público da sua instância AWS de Backend!
-const BACKEND_URL = 'http://http://13.58.196.54:3000'; 
+const BACKEND_URL = 'http://13.58.196.54:3000'; 
 
 const productList = document.querySelector('#products');
 const addProductForm = document.querySelector('#add-product-form');
@@ -240,4 +240,5 @@ showAllButton.addEventListener('click', async () => {
     showAllButton.style.display = 'none';
     await fetchProducts();
 });
+
 
