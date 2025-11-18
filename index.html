@@ -7,24 +7,31 @@
 <body>
   <h1>Product CRUD</h1>
 
-  <form id="add-product-form">
-    <h2 id="form-title">Add Product</h2>
-
-    <label for="name">Name:</label>
+  <form id="add-product-form" class="form-container">
+    <h2 id="form-title">Adicionar Produto</h2>
+    
+    <label for="name">Nome:</label>
     <input type="text" id="name" name="name" required>
-
-    <label for="price">Price:</label>
+    
+    <label for="description">Descrição:</label>
+    <textarea id="description" name="description" required rows="4"></textarea> 
+    
+    <label for="price">Preço:</label>
     <input type="number" id="price" name="price" required step="0.01">
-
-    <label for="description">Description:</label>
-    <textarea id="description" name="description"></textarea>
-
-    <button type="submit" id="add-button">Add</button>
-    <button type="button" id="update-button" style="display:none;">Confirm Update</button>
-    <button type="button" id="cancel-button" style="display:none;">Cancel</button>
+    
+    <div id="action-buttons">
+      <button type="submit" id="submit-button">Adicionar</button>
+      </div>
   </form>
 
-  <ul id="products"></ul>
+  <div id="search-container">
+    <input type="text" id="search-input" placeholder="Buscar por Nome ou ID">
+    <button id="search-button">Buscar</button>
+    <button id="show-all-button" style="display: none;">Mostrar Todos</button>
+  </div>
+
+  <ul id="products">
+    </ul>
 
   <script src="app.js"></script>
   <script>

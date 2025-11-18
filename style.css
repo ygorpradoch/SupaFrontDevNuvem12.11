@@ -1,99 +1,188 @@
 body {
-    font-family: Arial, sans-serif;
-  }
-  
-  h1 {
-    margin-top: 20px;
-    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+}
+
+h1 {
     text-align: center;
-  }
-  
-  ul {
+    color: #007bff; /* Azul primário */
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e2e6ea;
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: #555;
+    margin-top: 0;
+}
+
+.form-container, #search-container {
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Estilo unificado para inputs e textarea */
+input[type="text"],
+input[type="number"],
+textarea { 
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical; /* Permite redimensionamento vertical para textarea */
+}
+
+#action-buttons button,
+#search-container button,
+.product-actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+    margin-right: 10px;
+}
+
+/* Botões Padrão/Adicionar */
+#submit-button {
+    background-color: #28a745; /* Verde */
+    color: white;
+}
+#submit-button:hover {
+    background-color: #218838;
+}
+
+/* Botões de Edição/Update */
+.update-button {
+    background-color: #007bff; /* Azul */
+    color: white;
+}
+.update-button:hover {
+    background-color: #0056b3;
+}
+#save-changes-button {
+    background-color: #ffc107; /* Amarelo/Atenção */
+    color: #333;
+}
+#save-changes-button:hover {
+    background-color: #e0a800;
+}
+#cancel-edit-button {
+    background-color: #6c757d; /* Cinza */
+    color: white;
+}
+#cancel-edit-button:hover {
+    background-color: #5a6268;
+}
+
+/* Botão de Delete */
+.delete-button {
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+}
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+/* Seção de Pesquisa */
+#search-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+#search-input {
+    flex-grow: 1;
+    margin-bottom: 0; 
+}
+#search-button, #show-all-button {
+    background-color: #17a2b8; /* Azul Claro */
+    color: white;
+}
+#search-button:hover, #show-all-button:hover {
+    background-color: #138496;
+}
+
+/* Lista de Produtos (Grade Responsiva) */
+#products {
     list-style: none;
     padding: 0;
-    margin: 0;
-    text-align: center;
-  }
-  
-  li {
-    display: inline-block;
-    margin: 5px;
-    padding: 5px 10px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px #ccc;
-  }
-  
-  button {
-    margin-left: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #3e8e41;
-  }
-  
-  form {
-    margin-top: 20px;
-    text-align: center;
-    background-color: #f2f2f2;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px #ccc;
-  }
-  
-  label {
-    display: inline-block;
+    margin: 30px auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Layout de grade */
+    gap: 20px;
+}
+
+.product-item {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-left: 5px solid #007bff; /* Detalhe em azul */
+    border-radius: 6px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-details strong {
+    font-size: 1.1em;
+    display: block;
     margin-bottom: 5px;
-  }
-  
-  input[type="text"],
-  input[type="number"] {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 100%;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-  }
-  
-  input[type="submit"],
-  button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    color: #007bff;
+}
+
+.product-description {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin: 5px 0;
+    white-space: pre-wrap; /* Mantém quebras de linha e espaçamento da descrição longa */
+}
+
+.product-price {
+    font-weight: bold;
+    color: #28a745;
+    display: block;
+    margin-top: 5px;
+}
+
+.product-id {
+    font-size: 0.8em;
+    color: #adb5bd;
+}
+
+.product-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.product-actions button {
+    margin-right: 0;
     padding: 5px 10px;
+}
+
+.no-products {
+    grid-column: 1 / -1;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  input[type="submit"]:hover,
-  button[type="submit"]:hover {
-    background-color: #3e8e41;
-  }
-  
-  input[type="number"]::-webkit-outer-spin-button,
-  input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
-  
+    font-style: italic;
+    color: #6c757d;
+}
