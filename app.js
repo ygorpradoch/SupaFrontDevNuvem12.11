@@ -1,3 +1,6 @@
+// ATENÇÃO: SUBSTITUA <IP_DO_SEU_BACKEND_AQUI> pelo IP Público da sua instância AWS de Backend!
+const BACKEND_URL = 'http://<IP_DO_SEU_BACKEND_AQUI>:3000'; 
+
 const productList = document.querySelector('#products');
 const addProductForm = document.querySelector('#add-product-form');
 const formTitle = document.querySelector('#form-title');
@@ -14,7 +17,7 @@ let editingProductId = null;
 
 // Função para buscar todos os produtos
 async function fetchProducts() {
-  const response = await fetch('http://13.59.214.226:3000/products');
+  const response = await fetch(`${BACKEND_URL}/products`); // URL CORRIGIDA
   const products = await response.json();
   renderProducts(products);
   setFormMode('add'); 
@@ -22,14 +25,14 @@ async function fetchProducts() {
 
 // Função para buscar produtos por ID
 async function fetchProductById(id) {
-    const response = await fetch(`http://13.59.214.226:3000/products/${id}`);
+    const response = await fetch(`${BACKEND_URL}/products/${id}`); // URL CORRIGIDA
     const data = await response.json();
-    return data; // Retorna array, pode ser vazia
+    return data; 
 }
 
 // Função para buscar produtos por nome
 async function searchProductsByName(name) {
-  const response = await fetch(`http://13.59.214.226:3000/products/search?name=${name}`);
+  const response = await fetch(`${BACKEND_URL}/products/search?name=${name}`); // URL CORRIGIDA
   const products = await response.json();
   return products;
 }
@@ -41,14 +44,15 @@ async function searchProducts(searchTerm) {
 
     // 1. Tenta buscar por ID se o termo for um número inteiro
     const id = parseInt(searchTerm);
-    if (!isNaN(id) && id.toString() === searchTerm) {
+    // Adicionei uma verificação mais robusta (incluindo que não seja 0 e que o parse seja igual ao termo)
+    if (!isNaN(id) && id.toString().length > 0 && String(id) === searchTerm) { 
         const productData = await fetchProductById(id);
         if (productData.length > 0) {
             products = productData;
         }
     }
     
-    // 2. Se não encontrou por ID ou se o termo não era um ID, tenta buscar por Nome
+    // 2. Se não encontrou por ID ou se o termo não era um ID (ou era string), tenta buscar por Nome
     if (products.length === 0) {
         products = await searchProductsByName(searchTerm);
     }
@@ -58,7 +62,7 @@ async function searchProducts(searchTerm) {
 
 // Função para adicionar um novo produto
 async function addProduct(name, description, price) {
-  const response = await fetch('http://localhost:3000/products', {
+  const response = await fetch(`${BACKEND_URL}/products`, { // URL CORRIGIDA
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -70,7 +74,7 @@ async function addProduct(name, description, price) {
 
 // Função para atualizar um produto existente
 async function updateProduct(id, name, description, price) {
-  const response = await fetch(`http://13.59.214.226:3000/products/${id}`, {
+  const response = await fetch(`${BACKEND_URL}/products/${id}`, { // URL CORRIGIDA
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -82,7 +86,7 @@ async function updateProduct(id, name, description, price) {
 
 // Função para deletar um produto
 async function deleteProduct(id) {
-  const response = await fetch('http://13.59.214.226:3000/products/' + id, {
+  const response = await fetch(`${BACKEND_URL}/products/` + id, { // URL CORRIGIDA
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -91,7 +95,7 @@ async function deleteProduct(id) {
   return response.json();
 }
 
-// --- Funções de Renderização e UI ---
+// --- Funções de Renderização e UI (SEM ALTERAÇÕES) ---
 
 // Função para renderizar a lista de produtos
 function renderProducts(products) {
@@ -188,7 +192,7 @@ function loadProductForEditing(product) {
     setFormMode('edit');
 }
 
-// --- Listeners de Eventos ---
+// --- Listeners de Eventos (SEM ALTERAÇÕES) ---
 
 // Listener para o formulário de Adicionar/Editar Produto
 addProductForm.addEventListener('submit', async event => {
@@ -235,5 +239,4 @@ showAllButton.addEventListener('click', async () => {
     searchInput.value = '';
     showAllButton.style.display = 'none';
     await fetchProducts();
-
 });
