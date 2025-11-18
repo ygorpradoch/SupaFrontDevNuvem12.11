@@ -14,7 +14,7 @@ let editingProductId = null;
 
 // Função para buscar todos os produtos
 async function fetchProducts() {
-  const response = await fetch('http://localhost:3000/products');
+  const response = await fetch('http://13.59.214.226:3000/products');
   const products = await response.json();
   renderProducts(products);
   setFormMode('add'); 
@@ -22,14 +22,14 @@ async function fetchProducts() {
 
 // Função para buscar produtos por ID
 async function fetchProductById(id) {
-    const response = await fetch(`http://localhost:3000/products/${id}`);
+    const response = await fetch(`http://13.59.214.226:3000/products/${id}`);
     const data = await response.json();
     return data; // Retorna array, pode ser vazia
 }
 
 // Função para buscar produtos por nome
 async function searchProductsByName(name) {
-  const response = await fetch(`http://localhost:3000/products/search?name=${name}`);
+  const response = await fetch(`http://13.59.214.226:3000/products/search?name=${name}`);
   const products = await response.json();
   return products;
 }
@@ -70,7 +70,7 @@ async function addProduct(name, description, price) {
 
 // Função para atualizar um produto existente
 async function updateProduct(id, name, description, price) {
-  const response = await fetch(`http://localhost:3000/products/${id}`, {
+  const response = await fetch(`http://13.59.214.226:3000/products/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ async function updateProduct(id, name, description, price) {
 
 // Função para deletar um produto
 async function deleteProduct(id) {
-  const response = await fetch('http://localhost:3000/products/' + id, {
+  const response = await fetch('http://13.59.214.226:3000/products/' + id, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -235,4 +235,5 @@ showAllButton.addEventListener('click', async () => {
     searchInput.value = '';
     showAllButton.style.display = 'none';
     await fetchProducts();
+
 });
