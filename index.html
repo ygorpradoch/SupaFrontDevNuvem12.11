@@ -8,12 +8,20 @@
   <h1>Product CRUD</h1>
 
   <form id="add-product-form">
-    <h2>Add Product</h2>
+    <h2 id="form-title">Add Product</h2>
+
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required>
+
     <label for="price">Price:</label>
     <input type="number" id="price" name="price" required step="0.01">
-    <button type="submit">Add</button>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description"></textarea>
+
+    <button type="submit" id="add-button">Add</button>
+    <button type="button" id="update-button" style="display:none;">Confirm Update</button>
+    <button type="button" id="cancel-button" style="display:none;">Cancel</button>
   </form>
 
   <ul id="products"></ul>
