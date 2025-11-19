@@ -1,4 +1,4 @@
-// ATENÇÃO: SUBSTITUA <IP_DO_SEU_BACKEND_AQUI> pelo IP Público da sua instância AWS de Backend!
+// ATENÇÃO: Verifique a sintaxe. Deve ser HTTP://IP:3000
 const BACKEND_URL = 'http://13.58.196.54:3000'; 
 
 const productList = document.querySelector('#products');
@@ -17,7 +17,7 @@ let editingProductId = null;
 
 // Função para buscar todos os produtos
 async function fetchProducts() {
-  const response = await fetch(`${BACKEND_URL}/products`); // URL CORRIGIDA
+  const response = await fetch(`${BACKEND_URL}/products`);
   const products = await response.json();
   renderProducts(products);
   setFormMode('add'); 
@@ -25,14 +25,14 @@ async function fetchProducts() {
 
 // Função para buscar produtos por ID
 async function fetchProductById(id) {
-    const response = await fetch(`${BACKEND_URL}/products/${id}`); // URL CORRIGIDA
+    const response = await fetch(`${BACKEND_URL}/products/${id}`);
     const data = await response.json();
     return data; 
 }
 
 // Função para buscar produtos por nome
 async function searchProductsByName(name) {
-  const response = await fetch(`${BACKEND_URL}/products/search?name=${name}`); // URL CORRIGIDA
+  const response = await fetch(`${BACKEND_URL}/products/search?name=${name}`);
   const products = await response.json();
   return products;
 }
@@ -44,7 +44,6 @@ async function searchProducts(searchTerm) {
 
     // 1. Tenta buscar por ID se o termo for um número inteiro
     const id = parseInt(searchTerm);
-    // Adicionei uma verificação mais robusta (incluindo que não seja 0 e que o parse seja igual ao termo)
     if (!isNaN(id) && id.toString().length > 0 && String(id) === searchTerm) { 
         const productData = await fetchProductById(id);
         if (productData.length > 0) {
@@ -62,7 +61,7 @@ async function searchProducts(searchTerm) {
 
 // Função para adicionar um novo produto
 async function addProduct(name, description, price) {
-  const response = await fetch(`${BACKEND_URL}/products`, { // URL CORRIGIDA
+  const response = await fetch(`${BACKEND_URL}/products`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -74,7 +73,7 @@ async function addProduct(name, description, price) {
 
 // Função para atualizar um produto existente
 async function updateProduct(id, name, description, price) {
-  const response = await fetch(`${BACKEND_URL}/products/${id}`, { // URL CORRIGIDA
+  const response = await fetch(`${BACKEND_URL}/products/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -86,7 +85,7 @@ async function updateProduct(id, name, description, price) {
 
 // Função para deletar um produto
 async function deleteProduct(id) {
-  const response = await fetch(`${BACKEND_URL}/products/` + id, { // URL CORRIGIDA
+  const response = await fetch(`${BACKEND_URL}/products/` + id, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -99,7 +98,7 @@ async function deleteProduct(id) {
 
 // Função para renderizar a lista de produtos
 function renderProducts(products) {
-  productList.innerHTML = ''; // Limpar lista
+  productList.innerHTML = ''; 
   
   if (products.length === 0) {
     productList.innerHTML = '<li class="no-products">Nenhum produto encontrado.</li>';
@@ -229,7 +228,7 @@ searchButton.addEventListener('click', async () => {
 // Listener para o campo de Busca (permitir busca ao pressionar Enter)
 searchInput.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
-        event.preventDefault(); // Previne a submissão do formulário pai
+        event.preventDefault(); 
         searchButton.click();
     }
 });
@@ -240,5 +239,3 @@ showAllButton.addEventListener('click', async () => {
     showAllButton.style.display = 'none';
     await fetchProducts();
 });
-
-
