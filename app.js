@@ -1,5 +1,5 @@
 // ATENÇÃO: Verifique a sintaxe. Deve ser HTTP://IP:3000
-const BACKEND_URL = 'http://13.59.214.226:3000'; 
+const BACKEND_URL = 'http://18.116.59.234:3000'; 
 
 const productList = document.querySelector('#products');
 const addProductForm = document.querySelector('#add-product-form');
@@ -240,3 +240,4 @@ showAllButton.addEventListener('click', async () => {
     await fetchProducts();
 
 });
+
